@@ -14,7 +14,7 @@ import com.devsuperior.demo.dto.CityDTO;
 import com.devsuperior.demo.entities.City;
 import com.devsuperior.demo.repositories.CityRepository;
 import com.devsuperior.demo.services.exceptions.DatabaseException;
-import com.devsuperior.demo.services.exceptions.ResourceNotFoundExceception;
+import com.devsuperior.demo.services.exceptions.ResourceNotFoundException;
 
 @Service
 public class CityService {
@@ -38,7 +38,7 @@ public class CityService {
 	@Transactional(propagation = Propagation.SUPPORTS)
 	public void delete(Long id) {
 		if(!repository.existsById(id)) {
-			throw new ResourceNotFoundExceception("Entidade não encontrada!" + id);
+			throw new ResourceNotFoundException("Entidade não encontrada!" + id);
 		}
 		try {
 			repository.deleteById(id);
